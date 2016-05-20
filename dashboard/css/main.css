@@ -13,6 +13,10 @@
 	transition: background-color .3s ease-in-out;
 }
 
+.add-overflow {
+	overflow-y: auto;
+}
+
 .item + .item {
 	box-shadow: 0 1px 0 #aaa inset;
 }
@@ -24,6 +28,7 @@
 
 .content {
 	height: 100%;
+	overflow: hidden;
 }
 
 .head {

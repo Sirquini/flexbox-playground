@@ -13,8 +13,8 @@
 	transition: background-color .3s ease-in-out;
 }
 
-.no-overflow {
-	overflow-y: scroll;
+.add-overflow {
+	overflow-y: auto;
 }
 
 .item + .item {
