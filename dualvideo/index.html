@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" ng-app="sqboard">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Dual Video</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body ng-controller="MainCtrl">
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="main row-stretch">
+            <div class="row row-center head">
+                <div class="col col-25">
+                    <div class="menu">Duos</div>
+                </div>
+                <div class="col">
+                    <div class="title">Dual Youtube player</div>
+                </div>
+            </div>
+            <div class="row content">
+                <div class="col col-25 sidebar">
+                    <div class="item padding" ng-click="setDuo(duo)" ng-repeat="duo in duos">
+                        {{ duo.name }}
+                    </div>
+                    <button ng-click="modal.show('Create')" class="btn btn-full padding no-margin">Add Bot</button>
+                </div>
+                <div class="col no-overflow">
+                    <div class="padding" ng-switch on="component">
+                        <div ng-switch-when="welcome">
+                            <h1>Welcome</h1>  
+                            <p>Select a Video Duo from the left to see more details, edit and play your Youtube video pairs.</p>
+                        </div>
+                        <div ng-switch-when="details">
+                            <h1>{{ cduo.name }}</h1> 
+                            <p>{{ cduo.desc }}</p>
+                            <div class="row">
+                                <div class="col">
+                                    <h2>Video 1</h2>
+                                    <iframe id="player" type="text/html" width="640" height="390" ng-src="{{getVideoUrl(cduo.url1)}}" frameborder="0"></iframe>
+                                </div>
+                                <div class="col">
+                                    <h2>Video 2</h2>
+                                    <iframe id="player" type="text/html" width="640" height="390" ng-src="{{getVideoUrl(cduo.url2)}}" frameborder="0"></iframe>
+                                </div>
+                            </div>
+                            <button ng-click="modal.show('Update')" class="btn btn-default">Update</button>
+                        </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="showModal" class="modal row row-center">
+            <div class="modal-content">
+                <form>
+                    <h2>{{ modal.action }} a Duo</h2>    
+                    <div class="row row-item row-baseline">
+                        <div class="col col-25">Name:</div>
+                        <div class="col"><input type="text" ng-model="inputDuo.name" class="form-control" placeholder="Duo name"></input></div>
+                    </div>
+                    <div class="row row-item row-baseline">
+                        <div class="col col-25">Desc:</div>
+                        <div class="col"><input type="text" ng-model="inputDuo.desc" class="form-control" placeholder="A description"></input></div>
+                    </div>
+                    <div class="row row-item row-top">
+                        <div class="col col-25">Video 1:</div>
+                        <div class="col"><textarea ng-model="inputDuo.url1" class="form-control" placeholder="Video_id, http://youtube.com/watch?v=VIDEO_ID"></textarea></input></div>
+                    </div>
+                    <div class="row row-item row-top">
+                        <div class="col col-25">Video 2:</div>
+                        <div class="col"><textarea ng-model="inputDuo.url2" class="form-control" placeholder="Video_id, http://youtube.com/watch?v=VIDEO_ID"></textarea></input></div>
+                    </div>
+                    <div class="row">
+                        <button ng-click="takeAction(modal.action)" class="col btn btn-default btn-full">Add</button>
+                        <button ng-click="modal.hide()" class="col btn btn-default btn-full">Cancel</button>
+                    </div>                
+                </form>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/controllers.js"></script>
+    </body>
+</html>
