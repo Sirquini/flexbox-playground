@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" ng-app="sqboard">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body ng-controller="MainCtrl">
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="main row-stretch">
+            <div class="row row-center head">
+                <div class="col col-25">
+                    <div class="menu">Networks</div>
+                </div>
+                <div class="col">
+                    <div class="title">Bot test online</div>
+                </div>
+            </div>
+            <div class="row content">
+                <div class="col col-25 sidebar">
+                    <div class="item padding" ng-click="setBot(bot)" ng-repeat="bot in bots">
+                        {{ bot.name }}
+                    </div>
+                    <button ng-click="modal.show('Create')" class="btn btn-full padding no-margin">Add Bot</button>
+                </div>
+                <div class="col">
+                    <div class="padding" ng-switch on="component">
+                        <div ng-switch-when="welcome">
+                            <h1>Welcome</h1>  
+                            <p>Select a Network from the left to see more details, edit and launch information, trainning data, test data, see results and reports.</p>
+                        </div>
+                        <div ng-switch-when="details">
+                            <h1>{{ cbot.name }}</h1> 
+                            <p>{{ cbot.desc }}</p>
+                            <h2>Train cases</h2>
+                            <p>{{ cbot.train | json }}</p>
+                            <h2>Test cases</h2>
+                            <p>{{ cbot.test | json }}</p>
+                            <button ng-click="modal.show('Update')" class="btn btn-default">Update</button>
+                        </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="showModal" class="modal row row-center">
+            <div class="modal-content">
+                <form>
+                    <h2>{{ modal.action }} a Network</h2>    
+                    <div class="row row-item row-baseline">
+                        <div class="col col-25">Name:</div>
+                        <div class="col"><input type="text" ng-model="inputBot.name" class="form-control" placeholder="Network name"></input></div>
+                    </div>
+                    <div class="row row-item row-baseline">
+                        <div class="col col-25">Desc:</div>
+                        <div class="col"><input type="text" ng-model="inputBot.desc" class="form-control" placeholder="A description"></input></div>
+                    </div>
+                    <div class="row row-item row-top">
+                        <div class="col col-25">Train data:</div>
+                        <div class="col"><textarea ng-model="inputBot.train" class="form-control" placeholder="Comma separated array of data"></textarea></input></div>
+                    </div>
+                    <div class="row row-item row-top">
+                        <div class="col col-25">Test data:</div>
+                        <div class="col"><textarea ng-model="inputBot.test" class="form-control" placeholder="Comma separated array of data"></textarea></input></div>
+                    </div>
+                    <div class="row">
+                        <button ng-click="takeAction(modal.action)" class="col btn btn-default btn-full">Add</button>
+                        <button ng-click="modal.hide()" class="col btn btn-default btn-full">Cancel</button>
+                    </div>                
+                </form>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/controllers.js"></script>
+    </body>
+</html>
