@@ -12,18 +12,24 @@
 .item {
 	transition: background-color .3s ease-in-out;
 }
-
-.add-overflow {
-	overflow-y: auto;
-}
-
+/* Temp removed while testing card layout.
 .item + .item {
 	box-shadow: 0 1px 0 #aaa inset;
 }
-
+*/
 .item:hover, .item-select, .btn:hover {
 	background-color: #44aaff;
-	color: #E9E9E9;
+	color: #fff;
+}
+
+.card {
+	background-color: #fafafa;
+	margin: 10px 15px;
+	border-left: 4px solid #44aaff;
+}
+
+.card:hover {
+	border-color: #fafafa;
 }
 
 .content {
@@ -43,7 +49,7 @@
 }
 
 .sidebar {
-	background-color: #BCBCBC;
+	background-color: #dadada;
 }
 
 	.sidebar a {
@@ -103,6 +109,14 @@ textarea {
 }
 
 /* Utils */
+
+.bolder {
+	font-weight: 600;
+}
+
+.add-overflow {
+	overflow-y: auto;
+}
 
 .text-center {
 	text-align: center;
