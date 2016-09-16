@@ -25,10 +25,11 @@
             </div>
             <div class="row content">
                 <div class="col col-25 sidebar">
-                    <div class="item padding" ng-click="setDuo(duo)" ng-repeat="duo in duos">
-                        {{ duo.name }}
+                    <div class="item card padding" ng-click="setDuo(duo)" ng-repeat="duo in duos">
+                        <span class="bolder">{{ duo.name }}</span>
+                        <br><small>{{ duo.desc | truncate : 25 }}</small>
                     </div>
-                    <button ng-click="modal.show('Create')" class="btn btn-full padding no-margin">Add Bot</button>
+                    <button ng-click="modal.show('Create')" class="btn btn-full padding no-margin">Add Duo</button>
                 </div>
                 <div class="col add-overflow">
                     <div class="padding" ng-switch on="component">

@@ -17,7 +17,7 @@ angular.module('sq.services', [])
   };
 })
 
-.factory('Duos', function($localStorage){
+.factory('Duos', function($localStorage) {
 	var duos = $localStorage.getObject('duos');
 
 	return  {
@@ -34,5 +34,16 @@ angular.module('sq.services', [])
 		save: function() {
 			$localStorage.setObject('duos', duos);
 		}
+	};
+})
+
+.filter('truncate', function() {
+	return function(value, limit) {
+		if (isNaN(limit))
+			limit = 20;
+		if (value.length > limit)
+			return value.substr(0, limit) + '...';
+		else
+			return value;
 	};
 });
